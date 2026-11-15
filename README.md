@@ -6,6 +6,8 @@ browser, tanpa backend.
 
 ## Menjalankan
 
+Butuh Node.js 20.19+ atau 22.12+ (syarat Vite 8).
+
 ```bash
 npm install
 npm run dev
