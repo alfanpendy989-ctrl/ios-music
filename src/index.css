@@ -76,3 +76,9 @@ input[type='range'].ios-range::-moz-range-thumb {
 .toast-in {
   animation: toast-in 0.25s ease-out;
 }
+
+/* Tinggi layar penuh; dvh mengikuti bilah alamat browser HP, vh untuk browser lama. */
+.app-h {
+  height: 100vh;
+  height: 100dvh;
+}

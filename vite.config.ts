@@ -10,5 +10,5 @@ export default defineConfig({
   preview: { host: true, allowedHosts: true },
   // ffmpeg.wasm membuat module worker sendiri; jangan di-prebundle.
   optimizeDeps: { exclude: ['@ffmpeg/ffmpeg', '@ffmpeg/core'] },
-  build: { target: 'es2022', chunkSizeWarningLimit: 1500 },
+  build: { target: ['es2020', 'chrome87', 'firefox78', 'safari14'], chunkSizeWarningLimit: 1500 },
 });

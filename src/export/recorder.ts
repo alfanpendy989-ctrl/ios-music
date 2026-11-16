@@ -39,7 +39,9 @@ export async function recordRealtime(
   const frames = new FrameSource(opts);
   opts.renderer.render(ctx, width, height, opts.scene, frames.frameAt(start));
 
-  const actx = new AudioContext();
+  const Ctor: typeof AudioContext =
+    window.AudioContext ?? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+  const actx = new Ctor();
   const dest = actx.createMediaStreamDestination();
   const source = actx.createBufferSource();
   source.buffer = buffer;

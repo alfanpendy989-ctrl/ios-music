@@ -47,7 +47,7 @@ export function App() {
   const [dragging, setDragging] = useState(false);
   const [exportState, setExportState] = useState<ExportState>({ status: 'idle', ratio: 0, stage: '' });
 
-  const desktop = useMediaQuery('(min-width: 1024px)');
+  const desktop = useMediaQuery('(min-width: 1024px), (min-width: 640px) and (orientation: landscape)');
   const current = tracks.find((t) => t.id === currentId) ?? null;
 
   const tracksRef = useRef(tracks);
@@ -540,8 +540,16 @@ export function App() {
     });
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden bg-black lg:flex-row">
-      <main className="relative min-h-0 flex-1 p-3 pb-[calc(env(safe-area-inset-bottom)+68px)] lg:p-8">
+    <div
+      className={`app-h flex overflow-hidden bg-black pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] ${
+        desktop ? 'flex-row' : 'flex-col'
+      }`}
+    >
+      <main
+        className={`relative min-h-0 min-w-0 flex-1 ${
+          desktop ? 'p-3 lg:p-8' : 'p-3 pb-[calc(env(safe-area-inset-bottom)+68px)]'
+        }`}
+      >
         <div className="flex h-full w-full items-center justify-center" style={{ containerType: 'size' }}>
           <div style={{ width: 'min(100cqw, calc(100cqh * 9 / 16))' }}>
             <PlayerPreview
@@ -559,8 +567,8 @@ export function App() {
       </main>
 
       {desktop ? (
-        <aside className="flex w-[400px] shrink-0 flex-col border-l border-white/10 bg-neutral-950">
-          <header className="space-y-4 px-6 pt-6 pb-4">
+        <aside className="flex w-[min(400px,48vw)] shrink-0 flex-col border-l border-white/10 bg-neutral-950">
+          <header className="space-y-3 px-4 pt-4 pb-3 lg:space-y-4 lg:px-6 lg:pt-6 lg:pb-4">
             <div>
               <h1 className="text-xl font-semibold tracking-tight">iOS Music Player</h1>
               <p className="text-sm text-white/45">Buat video Now Playing dari lagumu.</p>
@@ -569,7 +577,7 @@ export function App() {
               {tabButtons(false)}
             </div>
           </header>
-          <div className="thin-scroll min-h-0 flex-1 overflow-y-auto px-6 pb-8">{panel}</div>
+          <div className="thin-scroll min-h-0 flex-1 overflow-y-auto px-4 pb-8 lg:px-6">{panel}</div>
         </aside>
       ) : (
         <>

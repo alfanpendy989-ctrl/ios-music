@@ -25,6 +25,15 @@ npm run preview   # menyajikan hasil build
 > WebCodecs hanya tersedia di *secure context*: `localhost` atau HTTPS.
 > Kalau dibuka lewat `http://<ip-lan>`, ekspor otomatis memakai jalur cadangan.
 
+## Dipakai di semua perangkat
+
+Aplikasi ini berjalan sepenuhnya di browser, jadi cukup di-hosting sekali lalu dibuka dari HP, tablet, atau komputer mana pun.
+
+- **Hosting (GitHub Pages)**: workflow `.github/workflows/deploy.yml` mem-build dan men-deploy otomatis setiap ada push ke `main`. Aktifkan sekali di *Settings → Pages → Source: GitHub Actions*. Hasil `npm run build` (folder `dist/`) juga bisa diunggah ke hosting statis apa pun (Netlify, Vercel, Cloudflare Pages). Harus HTTPS supaya ekspor video (WebCodecs) aktif.
+- **Pasang sebagai aplikasi (PWA)**: di Android/desktop pilih *Install app*; di iPhone/iPad pilih *Share → Add to Home Screen*. Setelah kunjungan pertama aplikasi bisa dibuka tanpa internet.
+- **Tata letak**: HP potret memakai bottom sheet; HP mendatar, tablet mendatar, dan desktop memakai panel samping.
+- **Browser minimum**: Chrome/Edge 111+, Safari 16.4+ (iOS 16.4+), Firefox 128+. Ekspor memilih jalur otomatis sesuai kemampuan browser (lihat tabel di bawah).
+
 ## Fitur
 
 - **Tampilan Now Playing iOS** pada kanvas 1080×1920: wallpaper blur, kartu kaca,
