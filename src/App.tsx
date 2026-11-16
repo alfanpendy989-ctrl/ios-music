@@ -143,11 +143,13 @@ export function App() {
     };
     a.addEventListener('play', sync);
     a.addEventListener('pause', sync);
+    a.addEventListener('emptied', sync); // load() saat memutar tidak memicu 'pause'
     a.addEventListener('ended', ended);
     a.addEventListener('error', error);
     return () => {
       a.removeEventListener('play', sync);
       a.removeEventListener('pause', sync);
+      a.removeEventListener('emptied', sync);
       a.removeEventListener('ended', ended);
       a.removeEventListener('error', error);
     };
@@ -230,7 +232,7 @@ export function App() {
         autoplayRef.current = false;
         setCurrentId((list[idx + 1] ?? list[idx - 1])?.id ?? null);
       }
-      setTracks(list.filter((x) => x.id !== id));
+      setTracks((cur) => cur.filter((x) => x.id !== id));
       if (decodedRef.current?.id === id) decodedRef.current = null;
       // beri waktu pratinjau berpindah sebelum bitmap dilepas
       setTimeout(() => {

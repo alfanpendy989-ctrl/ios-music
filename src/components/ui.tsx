@@ -170,7 +170,6 @@ export function TimeField({
       <span className="text-sm text-white/70">{label}</span>
       <input
         type="text"
-        inputMode="numeric"
         value={text}
         disabled={disabled}
         onFocus={() => (focused.current = true)}

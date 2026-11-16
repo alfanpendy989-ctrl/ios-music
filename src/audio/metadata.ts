@@ -60,5 +60,6 @@ export function probeAudio(url: string): Promise<number> {
     };
     a.onerror = () => done(() => reject(new Error('format tidak didukung')));
     a.src = url;
+    a.load(); // iOS tidak mulai memuat tanpa load() eksplisit
   });
 }
